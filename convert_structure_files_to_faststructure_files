@@ -1,0 +1,30 @@
+#Create a .py file with the name of your choice and paste this script
+#! /usr/bin/env python3
+
+#These 2 lines will pass your .str file to the .py file as an argument in the command line
+import sys
+In_File = sys.argv[1]
+
+infile = open(In_File, 'r')
+Out_File = In_File + 'fast.str'
+outfile = open(Out_File, 'w')
+
+data = infile.readlines()
+data = data[1:] # Gets rid of loci names
+
+for a in data:
+    a = a.strip('\n')
+    b = a.split()
+    c = b[2:]
+    d = ' '.join(c)
+    e = b[0]
+    f = b[1]
+    if a == data[-1]:
+    	output_line = e +'\t'+ f +'\t1\t0\t0\textraCol\t'+ d
+    	outfile.write(output_line)
+    else:
+    	output_line = e +'\t'+ f +'\t1\t0\t0\textraCol\t'+ d + '\n'
+    	outfile.write(output_line)
+    	
+infile.close()
+outfile.close()
